@@ -1,5 +1,5 @@
 import { ComponentChildComponent } from './../component-child/component-child.component';
-import { Component, AfterViewInit, ViewChild, AfterContentInit } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, AfterContentInit, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-component-parent',
@@ -15,13 +15,12 @@ import { Component, AfterViewInit, ViewChild, AfterContentInit } from '@angular/
 //     console.log('parent:', this.parentValue);
 //   }
 
-  export class ComponentParentComponent implements AfterViewInit {
-
-    @ViewChild(ComponentChildComponent) childRef;
+  export class ComponentParentComponent implements OnInit {
+    parentValue;
     constructor() { }
-    message: string;
-    ngAfterViewInit() {
-      this.message = this.childRef.childValue;
+    receiveMessage($event) {
+      this.parentValue = $event;
     }
-
+    ngOnInit() {
+    }
 }
